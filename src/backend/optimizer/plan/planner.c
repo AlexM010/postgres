@@ -297,6 +297,7 @@ planner(Query *parse, const char *query_string, int cursorOptions,
 
 	return result;
 }
+PlannerInfo *global_root;
 
 PlannedStmt *
 standard_planner(Query *parse, const char *query_string, int cursorOptions,
@@ -432,7 +433,7 @@ standard_planner(Query *parse, const char *query_string, int cursorOptions,
 
 	/* primary planning entry point (may recurse for subqueries) */
 	root = subquery_planner(glob, parse, NULL, false, tuple_fraction, NULL);
-
+	global_root = root;
 	/* Select best Path and turn it into a Plan */
 	final_rel = fetch_upper_rel(root, UPPERREL_FINAL, NULL);
 	best_path = get_cheapest_fractional_path(final_rel, tuple_fraction);
@@ -610,6 +611,7 @@ standard_planner(Query *parse, const char *query_string, int cursorOptions,
 	if (glob->partition_directory != NULL)
 		DestroyPartitionDirectory(glob->partition_directory);
 
+	
 	return result;
 }
 

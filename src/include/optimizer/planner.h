@@ -22,6 +22,7 @@
 #include "nodes/plannodes.h"
 
 
+extern struct PlannerInfo *global_root;
 /* Hook for plugins to get control in planner() */
 typedef PlannedStmt *(*planner_hook_type) (Query *parse,
 										   const char *query_string,
