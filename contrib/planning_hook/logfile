@@ -1,0 +1,173 @@
+2025-07-11 12:58:59.984 EEST [919] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 12:58:59.987 EEST [919] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 12:58:59.998 EEST [919] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 12:59:00.011 EEST [925] LOG:  database system was interrupted; last known up at 2025-07-10 16:50:22 EEST
+2025-07-11 12:59:00.253 EEST [925] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-07-11 12:59:00.259 EEST [925] LOG:  redo starts at 0/1C658B8
+2025-07-11 12:59:00.260 EEST [925] LOG:  invalid record length at 0/1C659C0: expected at least 24, got 0
+2025-07-11 12:59:00.260 EEST [925] LOG:  redo done at 0/1C65988 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-07-11 12:59:00.268 EEST [923] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-07-11 12:59:00.289 EEST [923] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.003 s, total=0.025 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C659C0, redo lsn=0/1C659C0
+2025-07-11 12:59:00.293 EEST [919] LOG:  database system is ready to accept connections
+2025-07-11 12:59:07.110 EEST [919] LOG:  received fast shutdown request
+2025-07-11 12:59:07.115 EEST [919] LOG:  aborting any active transactions
+2025-07-11 12:59:07.116 EEST [919] LOG:  background worker "logical replication launcher" (PID 928) exited with exit code 1
+2025-07-11 12:59:07.116 EEST [923] LOG:  shutting down
+2025-07-11 12:59:07.120 EEST [923] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 12:59:07.132 EEST [923] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.016 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1C65A38, redo lsn=0/1C65A38
+2025-07-11 12:59:07.144 EEST [919] LOG:  database system is shut down
+2025-07-11 12:59:07.230 EEST [935] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 12:59:07.232 EEST [935] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 12:59:07.243 EEST [935] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 12:59:07.255 EEST [941] LOG:  database system was shut down at 2025-07-11 12:59:07 EEST
+2025-07-11 12:59:07.260 EEST [935] LOG:  database system is ready to accept connections
+2025-07-11 13:03:30.178 EEST [935] LOG:  received fast shutdown request
+2025-07-11 13:03:30.183 EEST [935] LOG:  aborting any active transactions
+2025-07-11 13:03:30.184 EEST [935] LOG:  background worker "logical replication launcher" (PID 944) exited with exit code 1
+2025-07-11 13:03:30.184 EEST [939] LOG:  shutting down
+2025-07-11 13:03:30.188 EEST [939] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 13:03:30.206 EEST [939] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.003 s, total=0.022 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C65AE8, redo lsn=0/1C65AE8
+2025-07-11 13:03:30.215 EEST [935] LOG:  database system is shut down
+2025-07-11 13:03:30.315 EEST [1019] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 13:03:30.319 EEST [1019] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 13:03:30.328 EEST [1019] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 13:03:30.337 EEST [1025] LOG:  database system was shut down at 2025-07-11 13:03:30 EEST
+2025-07-11 13:03:30.344 EEST [1019] LOG:  database system is ready to accept connections
+Examining relation 1
+2025-07-11 13:04:57.385 EEST [1019] LOG:  received fast shutdown request
+2025-07-11 13:04:57.391 EEST [1019] LOG:  aborting any active transactions
+2025-07-11 13:04:57.392 EEST [1019] LOG:  background worker "logical replication launcher" (PID 1029) exited with exit code 1
+2025-07-11 13:04:57.392 EEST [1023] LOG:  shutting down
+2025-07-11 13:04:57.395 EEST [1023] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 13:04:57.417 EEST [1023] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.004 s, total=0.025 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C65B98, redo lsn=0/1C65B98
+2025-07-11 13:04:57.429 EEST [1019] LOG:  database system is shut down
+2025-07-11 13:04:57.509 EEST [1066] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 13:04:57.511 EEST [1066] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 13:04:57.522 EEST [1066] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 13:04:57.571 EEST [1072] LOG:  database system was shut down at 2025-07-11 13:04:57 EEST
+2025-07-11 13:04:57.575 EEST [1066] LOG:  database system is ready to accept connections
+Examining relation 1
+2025-07-11 13:09:57.653 EEST [1070] LOG:  checkpoint starting: time
+2025-07-11 13:09:57.676 EEST [1070] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.003 s, total=0.024 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C65CA0, redo lsn=0/1C65C48
+2025-07-11 13:11:08.143 EEST [1066] LOG:  received fast shutdown request
+2025-07-11 13:11:08.148 EEST [1066] LOG:  aborting any active transactions
+2025-07-11 13:11:08.149 EEST [1066] LOG:  background worker "logical replication launcher" (PID 1075) exited with exit code 1
+2025-07-11 13:11:08.150 EEST [1070] LOG:  shutting down
+2025-07-11 13:11:08.154 EEST [1070] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 13:11:08.166 EEST [1070] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.016 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1C65D50, redo lsn=0/1C65D50
+2025-07-11 13:11:08.176 EEST [1066] LOG:  database system is shut down
+2025-07-11 13:11:08.267 EEST [1158] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 13:11:08.269 EEST [1158] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 13:11:08.280 EEST [1158] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 13:11:08.288 EEST [1164] LOG:  database system was shut down at 2025-07-11 13:11:08 EEST
+2025-07-11 13:11:08.293 EEST [1158] LOG:  database system is ready to accept connections
+2025-07-11 13:16:08.389 EEST [1162] LOG:  checkpoint starting: time
+2025-07-11 13:16:08.410 EEST [1162] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.003 s, total=0.021 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C65E58, redo lsn=0/1C65E00
+2025-07-11 13:22:25.228 EEST [1158] LOG:  received fast shutdown request
+2025-07-11 13:22:25.233 EEST [1158] LOG:  aborting any active transactions
+2025-07-11 13:22:25.234 EEST [1158] LOG:  background worker "logical replication launcher" (PID 1167) exited with exit code 1
+2025-07-11 13:22:25.234 EEST [1162] LOG:  shutting down
+2025-07-11 13:22:25.241 EEST [1162] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 13:22:25.252 EEST [1162] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.018 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1C65F08, redo lsn=0/1C65F08
+2025-07-11 13:22:25.263 EEST [1158] LOG:  database system is shut down
+2025-07-11 13:22:25.341 EEST [1307] FATAL:  could not load library "/usr/local/pgsql/lib/my_hook.so": /usr/local/pgsql/lib/my_hook.so: undefined symbol: ExplainNode
+2025-07-11 13:22:25.343 EEST [1307] LOG:  database system is shut down
+2025-07-11 13:30:27.108 EEST [1413] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 13:30:27.112 EEST [1413] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 13:30:27.122 EEST [1413] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 13:30:27.130 EEST [1419] LOG:  database system was shut down at 2025-07-11 13:22:25 EEST
+2025-07-11 13:30:27.134 EEST [1413] LOG:  database system is ready to accept connections
+2025-07-11 13:35:27.131 EEST [1417] LOG:  checkpoint starting: time
+2025-07-11 13:35:27.164 EEST [1417] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.009 s, sync=0.003 s, total=0.034 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C66028, redo lsn=0/1C65FB8
+2025-07-11 13:51:28.936 EEST [1413] LOG:  received fast shutdown request
+2025-07-11 13:51:28.941 EEST [1413] LOG:  aborting any active transactions
+2025-07-11 13:51:28.942 EEST [1413] LOG:  background worker "logical replication launcher" (PID 1422) exited with exit code 1
+2025-07-11 13:51:28.942 EEST [1417] LOG:  shutting down
+2025-07-11 13:51:28.946 EEST [1417] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 13:51:28.960 EEST [1417] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.017 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/1C660D8, redo lsn=0/1C660D8
+2025-07-11 13:51:28.972 EEST [1413] LOG:  database system is shut down
+2025-07-11 13:51:29.070 EEST [1511] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 13:51:29.072 EEST [1511] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 13:51:29.082 EEST [1511] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 13:51:29.091 EEST [1517] LOG:  database system was shut down at 2025-07-11 13:51:28 EEST
+2025-07-11 13:51:29.097 EEST [1511] LOG:  database system is ready to accept connections
+2025-07-11 13:54:36.351 EEST [1525] ERROR:  column "city" of relation "customers" does not exist at character 30
+2025-07-11 13:54:36.351 EEST [1525] STATEMENT:  INSERT INTO customers (name, city, email)
+	SELECT
+	    'Name_' || gs,
+	    CASE WHEN gs % 10 = 0 THEN NULL ELSE 'City_' || (gs % 20) END,
+	    'user' || gs || '@example.com'
+	FROM generate_series(1,10000) AS gs;
+2025-07-11 13:54:52.587 EEST [1525] ERROR:  syntax error at or near "table" at character 6
+2025-07-11 13:54:52.587 EEST [1525] STATEMENT:  show table customers;
+2025-07-11 13:55:03.455 EEST [1525] ERROR:  syntax error at or near "TABLE" at character 6
+2025-07-11 13:55:03.455 EEST [1525] STATEMENT:  SHOW TABLE customers;
+2025-07-11 13:56:29.208 EEST [1515] LOG:  checkpoint starting: time
+2025-07-11 13:56:29.240 EEST [1515] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.004 s, total=0.032 s; sync files=2, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/1C661E0, redo lsn=0/1C66188
+2025-07-11 13:56:39.887 EEST [1525] ERROR:  cannot drop table orders because other objects depend on it
+2025-07-11 13:56:39.887 EEST [1525] DETAIL:  constraint order_items_order_id_fkey on table order_items depends on table orders
+2025-07-11 13:56:39.887 EEST [1525] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2025-07-11 13:56:39.887 EEST [1525] STATEMENT:  DROP TABLE IF EXISTS orders;
+2025-07-11 13:56:39.890 EEST [1525] ERROR:  cannot drop table customers because other objects depend on it
+2025-07-11 13:56:39.890 EEST [1525] DETAIL:  constraint orders_customer_id_fkey on table orders depends on table customers
+2025-07-11 13:56:39.890 EEST [1525] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2025-07-11 13:56:39.890 EEST [1525] STATEMENT:  DROP TABLE IF EXISTS customers;
+2025-07-11 13:56:39.899 EEST [1525] ERROR:  relation "customers" already exists
+2025-07-11 13:56:39.899 EEST [1525] STATEMENT:  CREATE TABLE customers (
+	    id SERIAL PRIMARY KEY,
+	    name TEXT NOT NULL,
+	    city TEXT,
+	    email TEXT
+	);
+2025-07-11 13:56:39.900 EEST [1525] ERROR:  relation "orders" already exists
+2025-07-11 13:56:39.900 EEST [1525] STATEMENT:  CREATE TABLE orders (
+	    id SERIAL PRIMARY KEY,
+	    customer_id INTEGER REFERENCES customers(id),
+	    amount NUMERIC(10,2),
+	    order_date DATE,
+	    status TEXT,
+	    note TEXT
+	);
+2025-07-11 14:00:56.473 EEST [1525] ERROR:  cannot drop table orders because other objects depend on it
+2025-07-11 14:00:56.473 EEST [1525] DETAIL:  constraint order_items_order_id_fkey on table order_items depends on table orders
+2025-07-11 14:00:56.473 EEST [1525] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2025-07-11 14:00:56.473 EEST [1525] STATEMENT:  DROP TABLE IF EXISTS orders;
+2025-07-11 14:01:04.096 EEST [1525] ERROR:  cannot drop table orders because other objects depend on it
+2025-07-11 14:01:04.096 EEST [1525] DETAIL:  constraint order_items_order_id_fkey on table order_items depends on table orders
+2025-07-11 14:01:04.096 EEST [1525] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2025-07-11 14:01:04.096 EEST [1525] STATEMENT:  DROP TABLE IF EXISTS orders;
+2025-07-11 14:01:15.743 EEST [1525] ERROR:  cannot drop table orders because other objects depend on it
+2025-07-11 14:01:15.743 EEST [1525] DETAIL:  constraint order_items_order_id_fkey on table order_items depends on table orders
+2025-07-11 14:01:15.743 EEST [1525] HINT:  Use DROP ... CASCADE to drop the dependent objects too.
+2025-07-11 14:01:15.743 EEST [1525] STATEMENT:  DROP TABLE IF EXISTS orders;
+2025-07-11 14:01:15.769 EEST [1525] ERROR:  relation "orders" already exists
+2025-07-11 14:01:15.769 EEST [1525] STATEMENT:  CREATE TABLE orders (
+	    id SERIAL PRIMARY KEY,
+	    customer_id INTEGER REFERENCES customers(id),
+	    amount NUMERIC(10,2),
+	    order_date DATE,
+	    status TEXT,
+	    note TEXT
+	);
+2025-07-11 14:01:29.362 EEST [1515] LOG:  checkpoint starting: time
+2025-07-11 14:01:33.744 EEST [1515] LOG:  checkpoint complete: wrote 43 buffers (0.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=4.341 s, sync=0.029 s, total=4.382 s; sync files=38, longest=0.006 s, average=0.001 s; distance=246 kB, estimate=246 kB; lsn=0/1CA3BA8, redo lsn=0/1CA3B50
+2025-07-11 14:06:08.198 EEST [1550] ERROR:  syntax error at or near "test" at character 6
+2025-07-11 14:06:08.198 EEST [1550] STATEMENT:  DROP test;
+2025-07-11 14:08:09.056 EEST [1515] LOG:  checkpoint starting: immediate force wait
+2025-07-11 14:08:09.076 EEST [1515] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.020 s; sync files=1, longest=0.004 s, average=0.004 s; distance=1 kB, estimate=221 kB; lsn=0/1CA4038, redo lsn=0/1CA3FC8
+2025-07-11 14:13:09.178 EEST [1515] LOG:  checkpoint starting: time
+2025-07-11 14:16:52.090 EEST [1515] LOG:  checkpoint complete: wrote 2215 buffers (13.5%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 2 recycled; write=222.826 s, sync=0.060 s, total=222.912 s; sync files=324, longest=0.003 s, average=0.001 s; distance=31294 kB, estimate=31294 kB; lsn=0/3B338A8, redo lsn=0/3B33818
+2025-07-11 14:26:13.276 EEST [1511] LOG:  received fast shutdown request
+2025-07-11 14:26:13.280 EEST [1511] LOG:  aborting any active transactions
+2025-07-11 14:26:13.281 EEST [1511] LOG:  background worker "logical replication launcher" (PID 1520) exited with exit code 1
+2025-07-11 14:26:13.282 EEST [1515] LOG:  shutting down
+2025-07-11 14:26:13.285 EEST [1515] LOG:  checkpoint starting: shutdown immediate
+2025-07-11 14:26:13.299 EEST [1515] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 0 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.017 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=28164 kB; lsn=0/3B33958, redo lsn=0/3B33958
+2025-07-11 14:26:13.319 EEST [1511] LOG:  database system is shut down
+2025-07-11 14:29:48.786 EEST [1946] LOG:  starting PostgreSQL 18beta1 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0, 64-bit
+2025-07-11 14:29:48.789 EEST [1946] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2025-07-11 14:29:48.800 EEST [1946] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2025-07-11 14:29:48.811 EEST [1952] LOG:  database system was shut down at 2025-07-11 14:26:13 EEST
+2025-07-11 14:29:48.818 EEST [1946] LOG:  database system is ready to accept connections
+2025-07-11 14:34:48.814 EEST [1950] LOG:  checkpoint starting: time
+2025-07-11 14:34:49.245 EEST [1950] LOG:  checkpoint complete: wrote 4 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.007 s, total=0.431 s; sync files=4, longest=0.005 s, average=0.002 s; distance=31 kB, estimate=31 kB; lsn=0/3B3B888, redo lsn=0/3B3B830
