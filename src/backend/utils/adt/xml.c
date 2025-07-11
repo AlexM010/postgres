@@ -529,14 +529,36 @@ xmltext(PG_FUNCTION_ARGS)
 #ifdef USE_LIBXML
 	text	   *arg = PG_GETARG_TEXT_PP(0);
 	text	   *result;
-	xmlChar    *xmlbuf = NULL;
+	volatile xmlChar *xmlbuf = NULL;
+	PgXmlErrorContext *xmlerrcxt;
 
-	xmlbuf = xmlEncodeSpecialChars(NULL, xml_text2xmlChar(arg));
+	/* First we gotta spin up some error handling. */
+	xmlerrcxt = pg_xml_init(PG_XML_STRICTNESS_ALL);
 
-	Assert(xmlbuf);
+	PG_TRY();
+	{
+		xmlbuf = xmlEncodeSpecialChars(NULL, xml_text2xmlChar(arg));
 
-	result = cstring_to_text_with_len((const char *) xmlbuf, xmlStrlen(xmlbuf));
-	xmlFree(xmlbuf);
+		if (xmlbuf == NULL || xmlerrcxt->err_occurred)
+			xml_ereport(xmlerrcxt, ERROR, ERRCODE_OUT_OF_MEMORY,
+						"could not allocate xmlChar");
+
+		result = cstring_to_text_with_len((const char *) xmlbuf,
+										  xmlStrlen((const xmlChar *) xmlbuf));
+	}
+	PG_CATCH();
+	{
+		if (xmlbuf)
+			xmlFree((xmlChar *) xmlbuf);
+
+		pg_xml_done(xmlerrcxt, true);
+		PG_RE_THROW();
+	}
+	PG_END_TRY();
+
+	xmlFree((xmlChar *) xmlbuf);
+	pg_xml_done(xmlerrcxt, false);
+
 	PG_RETURN_XML_P(result);
 #else
 	NO_XML_SUPPORT();
@@ -663,7 +685,7 @@ xmltotext_with_options(xmltype *data, XmlOptionType xmloption_arg, bool indent)
 	volatile xmlBufferPtr buf = NULL;
 	volatile xmlSaveCtxtPtr ctxt = NULL;
 	ErrorSaveContext escontext = {T_ErrorSaveContext};
-	PgXmlErrorContext *xmlerrcxt;
+	PgXmlErrorContext *volatile xmlerrcxt = NULL;
 #endif
 
 	if (xmloption_arg != XMLOPTION_DOCUMENT && !indent)
@@ -704,12 +726,17 @@ xmltotext_with_options(xmltype *data, XmlOptionType xmloption_arg, bool indent)
 		return (text *) data;
 	}
 
-	/* Otherwise, we gotta spin up some error handling. */
-	xmlerrcxt = pg_xml_init(PG_XML_STRICTNESS_ALL);
-
+	/*
+	 * Otherwise, we gotta spin up some error handling.  Unlike most other
+	 * routines in this module, we already have a libxml "doc" structure to
+	 * free, so we need to call pg_xml_init() inside the PG_TRY and be
+	 * prepared for it to fail (typically due to palloc OOM).
+	 */
 	PG_TRY();
 	{
 		size_t		decl_len = 0;
+
+		xmlerrcxt = pg_xml_init(PG_XML_STRICTNESS_ALL);
 
 		/* The serialized data will go into this buffer. */
 		buf = xmlBufferCreate();
@@ -770,7 +797,10 @@ xmltotext_with_options(xmltype *data, XmlOptionType xmloption_arg, bool indent)
 			if (oldroot != NULL)
 				xmlFreeNode(oldroot);
 
-			xmlAddChildList(root, content_nodes);
+			if (xmlAddChildList(root, content_nodes) == NULL ||
+				xmlerrcxt->err_occurred)
+				xml_ereport(xmlerrcxt, ERROR, ERRCODE_INTERNAL_ERROR,
+							"could not append xml node list");
 
 			/*
 			 * We use this node to insert newlines in the dump.  Note: in at
@@ -838,10 +868,10 @@ xmltotext_with_options(xmltype *data, XmlOptionType xmloption_arg, bool indent)
 			xmlSaveClose(ctxt);
 		if (buf)
 			xmlBufferFree(buf);
-		if (doc)
-			xmlFreeDoc(doc);
+		xmlFreeDoc(doc);
 
-		pg_xml_done(xmlerrcxt, true);
+		if (xmlerrcxt)
+			pg_xml_done(xmlerrcxt, true);
 
 		PG_RE_THROW();
 	}
@@ -931,7 +961,10 @@ xmlelement(XmlExpr *xexpr,
 			xml_ereport(xmlerrcxt, ERROR, ERRCODE_OUT_OF_MEMORY,
 						"could not allocate xmlTextWriter");
 
-		xmlTextWriterStartElement(writer, (xmlChar *) xexpr->name);
+		if (xmlTextWriterStartElement(writer, (xmlChar *) xexpr->name) < 0 ||
+			xmlerrcxt->err_occurred)
+			xml_ereport(xmlerrcxt, ERROR, ERRCODE_INTERNAL_ERROR,
+						"could not start xml element");
 
 		forboth(arg, named_arg_strings, narg, xexpr->arg_names)
 		{
@@ -939,19 +972,30 @@ xmlelement(XmlExpr *xexpr,
 			char	   *argname = strVal(lfirst(narg));
 
 			if (str)
-				xmlTextWriterWriteAttribute(writer,
-											(xmlChar *) argname,
-											(xmlChar *) str);
+			{
+				if (xmlTextWriterWriteAttribute(writer,
+												(xmlChar *) argname,
+												(xmlChar *) str) < 0 ||
+					xmlerrcxt->err_occurred)
+					xml_ereport(xmlerrcxt, ERROR, ERRCODE_INTERNAL_ERROR,
+								"could not write xml attribute");
+			}
 		}
 
 		foreach(arg, arg_strings)
 		{
 			char	   *str = (char *) lfirst(arg);
 
-			xmlTextWriterWriteRaw(writer, (xmlChar *) str);
+			if (xmlTextWriterWriteRaw(writer, (xmlChar *) str) < 0 ||
+				xmlerrcxt->err_occurred)
+				xml_ereport(xmlerrcxt, ERROR, ERRCODE_INTERNAL_ERROR,
+							"could not write raw xml text");
 		}
 
-		xmlTextWriterEndElement(writer);
+		if (xmlTextWriterEndElement(writer) < 0 ||
+			xmlerrcxt->err_occurred)
+			xml_ereport(xmlerrcxt, ERROR, ERRCODE_INTERNAL_ERROR,
+						"could not end xml element");
 
 		/* we MUST do this now to flush data out to the buffer ... */
 		xmlFreeTextWriter(writer);
@@ -4220,20 +4264,27 @@ xml_xmlnodetoxmltype(xmlNodePtr cur, PgXmlErrorContext *xmlerrcxt)
 	}
 	else
 	{
-		xmlChar    *str;
+		volatile xmlChar *str = NULL;
 
-		str = xmlXPathCastNodeToString(cur);
 		PG_TRY();
 		{
+			char	   *escaped;
+
+			str = xmlXPathCastNodeToString(cur);
+			if (str == NULL || xmlerrcxt->err_occurred)
+				xml_ereport(xmlerrcxt, ERROR, ERRCODE_OUT_OF_MEMORY,
+							"could not allocate xmlChar");
+
 			/* Here we rely on XML having the same representation as TEXT */
-			char	   *escaped = escape_xml((char *) str);
+			escaped = escape_xml((char *) str);
 
 			result = (xmltype *) cstring_to_text(escaped);
 			pfree(escaped);
 		}
 		PG_FINALLY();
 		{
-			xmlFree(str);
+			if (str)
+				xmlFree((xmlChar *) str);
 		}
 		PG_END_TRY();
 	}
